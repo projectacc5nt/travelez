@@ -22,7 +22,7 @@
 	</bean>
 	
 	<!-- 공통 팩키지(경로) -->
-	<context:component-scan base-package="com.travel.myapp"/>
+	<context:component-scan base-package="com.travelez.app"/>
 	
 	<!-- Ajax 사용허가 -->
 	<mvc:annotation-driven />
