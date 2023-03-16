@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member">
+	<!-- id 중복확인 -->
+	<select id="idcheck" parameterType="String" resultType="Integer">
+		select count(*)
+		from member
+		where te_id=#{teId}
+	</select>
+	
+	<!-- 회원가입 시 이메일 인증을 위한 랜덤번호 저장 -->
+	<insert id="insertEmailKey" parameterType="com.travelez.app.member.dto.EmailChkDto">
+		insert into emailchk(te_email, te_email_key)
+		values(#{teEmail}, #{teEmailKey})
+	</insert>
+	
+	<!-- 이메일 중복체크 -->
+	<select id="emailCheck" parameterType="String" resultType="Integer">
+		select count(*)
+		from member
+		where te_email=#{teEmail}
+	</select>
+	
+	<!-- 인증코드메일 다시전송 -->
+	<update id="updateEmailKey" parameterType="com.travelez.app.member.dto.EmailChkDto">
+		update emailchk
+		set te_email_key=#{teEmailKey}
+		where te_email=#{teEmail}
+	</update>
+	
+	<!-- 저장된 이메일정보와 key가 일치하는지 확인 -->
+	<select id="emailKeyChk" parameterType="com.travelez.app.member.dto.EmailChkDto" resultType="com.travelez.app.member.dto.EmailChkDto">
+		select te_email
+		from emailchk
+		where te_email=#{teEmail} and te_email_key=#{teEmailKey}
+	</select>
+	
+	<!-- 메일 인증을 하면 te_email_auth 컬럼을 기본값 0에서 1로 바꿔 회원가입을 허용 -->
+	<update id="updateMailAuth" parameterType="com.travelez.app.member.dto.EmailChkDto">
+		update emailchk
+		set te_email_auth=1
+		where te_email=#{teEmail} and te_email_key=#{teEmailKey}
+	</update>
+	
+	<!-- 이메일이 등록되고 인증까지 완료되었는지 확인 -->
+	<select id="emailAuthChk" parameterType="com.travelez.app.member.dto.EmailChkDto" resultType="Integer">
+		select te_email_auth
+		from emailchk
+		where te_email=#{teEmail} and te_email_key=#{teEmailKey}
+	</select>
+	
+	<!-- 회원등록 -->
+	<insert id="addMember" parameterType="com.travelez.app.member.dto.MemberDto">
+		insert into member(te_id, te_profile, te_profilename, te_pwd, te_name, te_email,
+							 te_phonenum, te_birth, te_prefertrip, te_auth)
+		values(#{teId}, #{teProfile}, #{teProfileName}, #{tePwd}, #{teName}, #{teEmail},
+				#{tePhoneNum}, #{teBirth}, #{tePreferTrip}, 3)
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="login" parameterType="com.travelez.app.member.dto.MemberDto" resultType="com.travelez.app.member.dto.MemberDto">
+	    select te_id, te_name, te_profile
+	    from member
+	    where te_id=#{teId} and te_pwd=#{tePwd}
+	</select>
+	<!-- 이메일인증하고 아이디찾기 -->
+	<select id="findId" parameterType="String" resultType="String">
+		select te_id
+		from member
+		where te_email=#{teEmail}
+	</select>
+	<!-- 이메일인증하고 비밀번호찾기 -->
+	<select id="findPwd" parameterType="com.travelez.app.member.dto.MemberDto" resultType="Integer">
+		select count(*)
+		from member
+		where te_id=#{teId} and te_email=#{teEmail}
+	</select>
+	<!-- 새로운 비밀번호설정 -->
+	<update id="updatePwd" parameterType="com.travelez.app.member.dto.MemberDto">
+		update member
+		set te_pwd=#{tePwd}
+		where te_email=#{teEmail}
+	</update>
+</mapper>

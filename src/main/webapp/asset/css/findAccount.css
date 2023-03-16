@@ -1,0 +1,134 @@
+@charset "UTF-8";
+.findAccountBtn {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin:100px auto 50px;
+}
+.findAccountBtn > button {
+    height:60px;
+    width:300px;
+    color:#64BDEB;
+    font-weight: 500;
+    border:1px solid #64BDEB;
+    background:#fff;
+}
+.findContent {
+    position:relative;
+    width:400px;
+    height:800px;
+    margin:0 auto;
+}
+
+.findContent > div {
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+}
+.idFindBox:nth-child(1) {
+    display:block;
+}
+.idFindBox {
+	display:none;
+}
+.pwdFindBox {
+    display:none;
+}
+
+.findContent > div .inputBox {
+    display:flex;
+    align-items: center;
+    width:100%;
+    margin-bottom:40px;
+}
+.findContent #pwdFindBox1 .inputBox:nth-child(1),
+.findContent #pwdFindBox3 .inputBox:nth-child(1) {
+    margin-bottom:10px;
+}
+.findContent > div .inputBox span{
+    font-size:0.8em;
+    font-weight: 500;
+    width:100px;
+    display:inline-block;
+    line-height: 1.2;
+}
+.findContent > div .inputBox input {
+    height:50px;
+    width:100%;
+    border:solid 1px #ddd;
+    border-radius: 10px;
+    padding : 10px
+}
+.findContent > div > button,
+#pwdFindBox4 > a {
+    height:50px;
+    width:70%;
+    margin: 0 0 10px 16%;
+    background:#64BDEB;
+    border-radius: 10px;
+    color:#fff;
+    font-weight: 400;
+    text-align: center;
+}
+.findContent > div > a {
+    display: inline-block;
+    height:50px;
+    width:70%;
+    margin: 0 0 10px 16%;
+    border:1px solid #64BDEB;
+    border-radius: 10px;
+    color:#64BDEB;
+    line-height: 50px;
+    font-weight: 400;
+    text-align: center;
+}
+#idFindBox3 > p,
+#pwdFindBox4 > p {
+    text-align: center;
+    margin:30px auto 60px;
+    line-height:1.7;
+}
+#idFindBox3 > p em {
+    font-weight:700;
+    font-size:1.2em;
+}
+
+
+/* 추가class */
+.clickBtn {
+    color:#fff !important;
+    font-weight: 700 !important;
+    background:#64BDEB !important;
+}
+.inputOk {
+	border : 1px solid #0F0FC0 !important;
+}
+.inputNg {
+	border : 1px solid #ff0000 !important;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  10%, 90% {
+    transform: translateX(-3px);
+  }
+  20%, 80% {
+    transform: translateX(3px);
+  }
+  30%, 50%, 70% {
+    transform: translateX(-3px);
+  }
+  40%, 60% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.shake-element {
+  animation: shake 0.3s;
+}

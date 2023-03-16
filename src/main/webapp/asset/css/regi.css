@@ -1,0 +1,292 @@
+@charset "UTF-8";
+
+main { 
+    width : 600px;
+    margin : 0 auto;
+}
+h2 {
+    font-size: 2em;
+    text-align: center;
+    font-weight: 600;
+    margin:50px 0;
+}
+.requiredInfo {
+    position: relative;
+    font-size:0.75em;
+    text-align: right;
+    padding-bottom:15px;
+    z-index:-3;
+}
+.requiredInfo::after {
+    content:'';
+    background-color:#0d0d0d;
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:2px;
+    z-index:-3;
+}
+/* form */
+form {
+    display:flex;
+    flex-flow: column;
+    align-items: left;
+}
+/* profile */
+.profile {
+    display:flex;
+    flex-flow: column;
+    align-items: center;
+    margin:40px 0 0;
+}
+.profile .roundImg {
+	z-index:-2;
+}
+.profile .roundImg > img {
+    border-radius: 50%;
+    width:100px;
+    height:100px;
+}
+#profile {
+    display: inline-block;
+    z-index: 2;
+    opacity: 0;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    right: -38px;
+    bottom: 30px;
+    cursor: pointer;
+}
+.profile > label {
+    position:relative;
+    right:-40px;
+    bottom:59px;
+    z-index:-1;
+    cursor: pointer;
+}
+/* user 공통부분 */
+form > div {
+    margin-bottom:30px;
+}
+form div > span {
+    font-size:0.8em;
+    font-weight: 500;
+    width:100px;
+    display:inline-block;
+    line-height: 1.2;
+}
+form div > input[id^=user] {
+    height:50px;
+    width:60%;
+    border:solid 1px #ddd;
+    border-radius: 10px;
+    padding : 10px
+}
+form div > button[id$=Btn] {
+    height:50px;
+    width:100px;
+    margin-left:30px;
+    background-color: #64BDEB;
+    border-radius: 10px;
+    color:#fff;
+    font-size:0.9em;
+}
+/* userId */
+.userIdWrap {
+	margin-bottom:20px;
+}
+#idcheck {
+	margin:10px 0 0 105px;
+	font-size:0.8em;
+}
+/* userEmailChk */
+.userEmailChk{
+	display:none;
+}
+/* userBirth */
+.userBirth {
+	display :flex;
+	align-items:center;
+}
+
+.userBirth > span+label {
+	position:relative;
+	display:inline-block;
+	height:50px;
+    width:60%;
+}
+#userBirth {
+	opacity : 0;
+	position: absolute;
+	left:0;
+	top:0;
+	height:50px;
+    width:100%;
+    z-index:20;
+}
+
+#customDate {
+	font-family: 'Inter', sans-serif;
+	position: absolute;
+	left:0;
+	top:0;
+	display:inline-block;
+	height:50px;
+    width:100%;
+    border:solid 1px #ddd;
+    border-radius: 10px;
+    padding : 15px 10px 10px;
+    color: #aaa;
+    font-size :1.1em;
+    font-weight:400;
+    text-align:center;
+    z-index:10;
+    letter-spacing: 3px;
+}
+
+input[type='date']:focus::before,
+input[type='date']:valid::before {
+  	display: none;
+}
+input[type='date']::-webkit-calendar-picker-indicator{
+/* 	position:absolute;
+	left:0;
+	top:0; */
+	width: 100%;
+	height:100%;
+}
+
+
+/* 체크박스 공통부분 */
+.preferTrip, .agreement {
+    display:flex;
+}
+input[type=checkbox] {
+    display:none;
+}
+input[type=checkbox]+label {
+    font-size:0.9em;
+}
+input[type=checkbox]+label::before {
+    content:'';
+    display:inline-block;
+    width:22px;
+    height:22px;
+    background:url(../images/check_icon.png);
+    margin-right:10px;
+    position:relative;
+    left:0;
+    top:5px;
+}
+input[type=checkbox]:checked+label::before {
+    background-position: 22px 0;
+}
+/* preferTrip */
+.preferTrip .userChk {
+    display:flex;
+    align-content: center;
+    flex-wrap: wrap;
+    width:60%;
+    border:solid 1px #ddd;
+    border-radius: 10px;
+    padding : 15px 0 20px 25px;
+}
+.preferTrip .userChk > div {
+    width:28%;
+    margin-right:17px;
+}
+.preferTrip .userChk > div:nth-child(4),
+.preferTrip .userChk > div:nth-child(5),
+.preferTrip .userChk > div:nth-child(6) {
+    margin:20px 17px 20px 0;
+}
+/* agreement */
+.agreement .userChk {
+    border:solid 1px #ddd;
+    border-radius: 10px;
+    padding:20px;
+    width:60%;
+
+}
+.agreement .userChk > div {
+    display:flex;
+    justify-content: space-between;
+    margin:0 0 20px 0;
+}
+.agreement .userChk > div > input[type=checkbox]+label {
+    padding:0 10px;
+}
+input[id=allAgree]+label::before  {
+    width:30px;
+    height:30px;
+    margin-right:12px;
+    background-size: 60px;
+    left:-4px;
+    top:10px
+}
+input[id$=useAgree]+label::before,
+input[id$=infoAgree]+label::before,
+input[id$=ageAgree]+label::before {
+    margin-right:20px;
+}
+input[id=allAgree]:checked+label::before {
+    left:-4px;
+    background-position: 30px 0;
+}
+.agreement .userChk > div > label > em {
+    font-size:0.9em;
+    color:#aaa;
+    margin-left:5px;
+}
+.agreement .userChk > div > button {
+    text-indent: -9999px;
+    display:inline-block;
+    background: url(../images/right_icon.png);
+    background-size:5px;
+    height:10px;
+    width:5px;
+
+}
+.join {
+    width:40%;
+    height:50px;
+    margin:30px 27% 70px;
+    color:#fff;
+    background:#64BDEB;
+    font-weight: 500;
+}
+
+/* 추가할 class */
+.inputOk {
+	border : 1px solid #0F0FC0 !important;
+}
+.inputNg {
+	border : 1px solid #ff0000 !important;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  10%, 90% {
+    transform: translateX(-3px);
+  }
+  20%, 80% {
+    transform: translateX(3px);
+  }
+  30%, 50%, 70% {
+    transform: translateX(-3px);
+  }
+  40%, 60% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.shake-element {
+  animation: shake 0.3s;
+}
