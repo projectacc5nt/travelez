@@ -1,0 +1,109 @@
+.loginWrap {
+    width:300px;
+    margin:200px auto;
+}
+h1 {
+    text-align: center;
+}
+.loginContent > form{
+    display: flex;
+    flex-flow: column;
+}
+/* id/pw입력칸 공통 */
+form > input[name^=te]{
+    width:100%;
+    height:50px;
+    border:solid 1px #ddd;
+    border-radius: 10px;
+    padding : 10px 20px;
+}
+form > input[name=teId]{
+    margin:30px 0 10px;
+}
+form > input[name=tePwd]{
+    margin:0 0 5px 0;
+}
+#idPwdChk {
+	display:none;
+	margin:5px 0 5px 10px;
+	font-size:0.8em;
+}
+form > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:15px 0 20px 0;
+}
+.rememberId input[type=checkbox] {
+    display:none;
+}
+.rememberId input[type=checkbox]+label,
+.idPwdSearch {
+    font-size:0.9em;
+    color:#555;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.rememberId input[type=checkbox]+label::before {
+    background:url(../images/check_icon.png);
+    content:'';
+    display:inline-block;
+    width:22px;
+    height:22px;
+    margin-right:10px;
+}
+.rememberId input[type=checkbox]:checked+label::before {
+    background-position: 22px 0;
+}
+#loginBtn {
+    height:50px;
+    color:#fff;
+    background: #64BDEB;
+    font-weight:400;
+    border-radius: 10px;
+    margin-bottom:10px;
+}
+.regiBtn {
+    height:50px;
+    width:100%;
+    border:1px solid #64BDEB;
+    color:#64BDEB;
+    text-align: center;
+    line-height: 45px;
+    border-radius: 10px;
+}
+
+/* 추가할 class */
+.inputOk {
+	border : 1px solid #0F0FC0 !important;
+}
+.inputNg {
+	border : 1px solid #ff0000 !important;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  10%, 90% {
+    transform: translateX(-3px);
+  }
+  20%, 80% {
+    transform: translateX(3px);
+  }
+  30%, 50%, 70% {
+    transform: translateX(-3px);
+  }
+  40%, 60% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.shake-element {
+  animation: shake 0.3s;
+}
+

@@ -1,0 +1,138 @@
+@charset "UTF-8";
+/* #64BDEB */
+/* header */
+header {
+    margin:0 auto;
+}
+/* headerTop */
+.hTop {
+    width:1000px;
+    margin:0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height:100px;
+}
+.hTop .hTopRightMenu {
+    display: flex;
+    align-items: center;
+}
+.hTop .hTopRightMenu > a{
+    padding : 0 15px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.hTop .hTopRightMenu > a > img {
+	width:25px;
+	height:25px;
+	margin-right:5px;
+	border-radius:50%;
+}
+.hTop .hTopRightMenu > a > span {
+	font-weight:600;
+}
+
+.hTop .hTopRightMenu > a {
+    font-size: 0.94em; /* 15px, 12pt  */
+}
+.hTop .hTopRightMenu > a:nth-child(1) {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: inherit;
+}
+/* headerBottom*/
+.hBottomBg {
+    position:relative;
+    left:0;
+    top:0;
+    background : #64BDEB;
+    width:100%;
+    padding:0 10px;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow:0 10px 15px rgba(25,25,25,0.1);
+    z-index:9999;
+
+}
+.hBottomBg .hBottom {
+    width:1000px;
+    margin:0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.hBottomBg .hBottom > a {
+    width:100px;
+    line-height: 60px;
+    margin:0 50px;
+    display: inline-block;
+    color : #fff;
+    font-size:1.1em;
+    text-align: center;
+    font-weight: 700;
+}
+.hBottomBg .hBottom > a:hover {
+    color: #ffe600  ; /* #F0E68C */
+    font-weight: 700;
+}
+.hBtmRightMenu > a {
+    text-indent: -9999px;
+    background-image:url(../images/loginIconW.png);
+    background-repeat: no-repeat;
+    height:25px; display:inline-block;
+    background-size:auto 25px;
+    padding:0 15px;
+    margin:0 10px;
+}
+.hBtmRightMenu > a:nth-child(1){background-position:5px 0;}
+.hBtmRightMenu > a:nth-child(2){background-position:-58px 0;}
+
+/* 로그인했을 때 보이는 css */
+#mypage {
+	text-indent: 0;
+	background:none;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:50%;
+	}
+#mypage > img{
+	width:25px;
+	height:25px;
+	border-radius:50%;
+
+	}
+#logout {background-position:-95px 0;}
+/* footer   */
+footer {
+	height:130px;
+	background:#eee;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+.fmenu {
+	display:flex;
+	justify-content: center;
+	align-items:center;
+	margin-bottom:10px;
+}
+.fmenu > a {
+	font-size:0.8em;
+	color:#777;
+}
+.personalInfo {
+	font-weight:600;
+	margin-left : 20px;
+}
+.copyright {
+	font-size:0.8em;
+	color:#777;
+}
+
+
+
