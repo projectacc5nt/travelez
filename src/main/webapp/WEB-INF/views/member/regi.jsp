@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="../asset/css/reset.css">
 	<link rel="stylesheet" href="../asset/css/common.css">
 	<link rel="stylesheet" href="../asset/css/regi.css">
+	<link rel="stylesheet" href="../asset/css/addClass.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<script type="text/javascript" src="../asset/script/regi.js"></script>
 </head>

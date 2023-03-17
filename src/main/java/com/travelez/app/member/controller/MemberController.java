@@ -41,7 +41,7 @@ public class MemberController {
 	JavaMailSender mailSender;
 	
 	@GetMapping(value = "home.do")
-	public String home() {
+	public String home(Model model, String teId) {
 		System.out.println("MemberController home" + new Date());
 		
 		return "member/home";
@@ -143,8 +143,7 @@ public class MemberController {
 	public String registerAf(	Model model,
 								MemberDto dto,
 								@RequestParam(value="fileload", required = false)
-								MultipartFile fileload,
-								HttpServletRequest req) {
+								MultipartFile fileload) {
 		
 		System.out.println("MemberController registerAf " + new Date());
 		
@@ -224,14 +223,12 @@ public class MemberController {
 	
 	@ResponseBody
 	@PostMapping(value = "loginAf.do")
-	public String loginAf(HttpServletRequest req, MemberDto dto) {
+	public String loginAf(Model model, HttpServletRequest req, MemberDto dto) {
 		System.out.println("MemberController loginAf " + new Date());
 		
 		System.out.println(dto);
 		
 		MemberDto login = service.login(dto);
-		
-		System.out.println(login);
 		
 		if(login != null) {
 			req.getSession().setAttribute("login", login);
@@ -355,4 +352,164 @@ public class MemberController {
 		}
 
 	}
+	@GetMapping(value = "mypage.do")
+	public String mypage(Model model, String teId) {
+		
+		System.out.println("MemberController mypage" + new Date());
+		
+		MemberDto userInfo = service.userInfo(teId);
+		model.addAttribute("userInfo", userInfo);
+		
+		return "member/mypage";
+	}
+	
+	@PostMapping(value="updateUserInfo.do")
+	public String updateUserInfo (	Model model,
+									MemberDto dto,
+									@RequestParam(value="fileload", required = false)
+									MultipartFile fileload,
+									HttpServletRequest req) {
+		
+		System.out.println("MemberController updateUserInfo " + new Date());
+		
+		if(!fileload.isEmpty()) {
+			
+			// upload의 경로 설정
+			// server
+//			String uploadPath = req.getServletContext().getRealPath("/asset/uploadProfile/");
+			String uploadPath = "/Users/ksy/git/travelez/src/main/webapp/asset/images/uploadProfile";
+			
+			System.out.println("uploadPath : " + uploadPath);
+			// filename 취득
+			String filename = fileload.getOriginalFilename();
+			
+			// 파일명을 충돌되지 않는 명칭(Date)으로 변경
+			String newfilename = fileUtil.getNewFileName(filename);
+			dto.setTeProfileName(newfilename);	// 변경된 파일명
+			// DB에 파일경로 저장 
+			String filePath = "../asset/images/uploadProfile/" + newfilename;
+			dto.setTeProfile(filePath);
+	
+			File file = new File(uploadPath + "/" + newfilename);
+			// 아이디챙겨보내기
+			MemberDto userInfo = service.userInfo(dto.getTeId());
+			
+			try {
+				// 실제로 파일 생성 + 기입 = 업로드 
+				FileUtils.writeByteArrayToFile(file, fileload.getBytes());
+				
+				// db에 저장
+				boolean isS = service.updateUserInfo(dto);
+				
+				String message = "";
+				if(isS) {
+					message = "MEMBER_UPDATE_YES";
+				}else {
+					message = "MEMBER_UPDATE_NO";
+				}
+				model.addAttribute("userInfo", userInfo);
+				model.addAttribute("message", message);
+				req.getSession().setAttribute("login", userInfo);
+				
+				System.out.println("MemberController updateUserInfo " + userInfo);
+				
+				return "member/message";
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+				String message = "MEMBER_UPDATE_NO";
+				
+				model.addAttribute("userInfo", userInfo);
+				model.addAttribute("message", message);
+				
+				System.out.println("MemberController updateUserInfo " + userInfo);
+				
+				return "member/message";
+			}
+		}else {
+			// db에 저장
+			boolean isS = service.updateUserInfo(dto);
+			MemberDto userInfo = service.userInfo(dto.getTeId());
+			
+			String message = "";
+			if(isS) {
+				message = "MEMBER_UPDATE_YES";
+			}else {
+				message = "MEMBER_UPDATE_NO";
+			}
+			model.addAttribute("userInfo", userInfo);
+			model.addAttribute("message", message);
+			req.getSession().setAttribute("login", userInfo);
+			
+			System.out.println("MemberController updateUserInfo " + userInfo);
+			
+			return "member/message";
+		}
+	}
+	@GetMapping(value="unRegi.do")
+	public String unRegi() {
+		System.out.println("MemberController unRegi " + new Date());
+		return "member/unRegi";
+	}
+	@ResponseBody
+	@PostMapping(value="idPwChk.do")
+	public String idPwChk(MemberDto dto) {
+		System.out.println("MemberController idPwChk " + new Date());
+		
+		MemberDto login = service.login(dto);
+		
+		if(login != null) {
+			return "OK";
+		}else {
+			return "fail";
+		}
+	}
+	
+	@PostMapping(value="unRegiAf.do")
+	public String unRegiAf(HttpServletRequest req, Model model, MemberDto dto) {
+
+		boolean isS = service.unEmailChk(dto.getTeEmail());
+		HttpSession session = req.getSession();
+
+		
+		String message = "";
+		if(isS) {
+			message = "UNREGI_YES";
+			session.setAttribute("login", null);
+		}else {
+			message = "UNREGI_NO";
+		}
+		model.addAttribute("message", message);
+		return "member/message";
+	}
+	@GetMapping(value="updatePwd.do")
+	public String updatePwd(Model model, String teId) {
+		System.out.println("MemberController updatePwd " + new Date());
+		
+		MemberDto userInfo = service.userInfo(teId);
+		model.addAttribute("userInfo", userInfo);
+		
+		return "member/updatePwd";
+	}
+	
+	@PostMapping(value="updatePwdAf.do")
+	public String updatePwdAf(HttpServletRequest req, MemberDto dto, Model model) {
+		System.out.println("MemberController updatePwdAf " + new Date());
+		System.out.println("controlloer " + dto );
+		
+		boolean isS = service.updateUserPwd(dto);
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("login", null);
+		
+		String message = "";
+		if(isS) {
+			message = "UPDATEPWD_YES";
+		}else {
+			message = "UPDATEPWD_NO";
+		}
+		model.addAttribute("message", message);
+		return "member/message";
+	}
+	
 }

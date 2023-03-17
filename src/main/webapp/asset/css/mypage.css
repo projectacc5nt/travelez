@@ -1,0 +1,169 @@
+@charset "UTF-8";
+main {
+    width:1000px;
+    margin:0 auto;
+    display:flex;
+}
+/* sideMenu */
+.mypageSideMenu {
+    position:relative;
+    width:300px;
+    border-right:1px solid #ddd;
+    padding-top:100px;
+}
+.userProfile {
+    display:flex;
+    flex-flow: column;
+    align-items: center;
+}
+.userProfile > img {
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+}
+.userProfile > p {
+    margin:20px 0 50px;
+    font-weight: 600;
+    font-size:1.2em;
+}
+.mypageSideMenu > .sideMenu {
+    display:flex;
+    flex-flow: column;
+    justify-content: left;
+    margin-left:30px;
+}
+.mypageSideMenu > .sideMenu > a {
+    position:relative;
+    font-size:1.4em;
+    font-weight: 600;
+    height:50px;
+}
+.mypageSideMenu > .sideMenu > a::after {
+    content:'';
+    background-color: #64BDEB;
+    width:5px;
+    height:35px;
+    position:absolute;
+    right:0;
+    top:-4;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.unRegi {
+    position:absolute;
+    left:30px;
+    bottom:30px;
+    color:#aaa;
+    font-size:0.8em;
+}
+/* rigthContent */
+.rightMyprofile {
+    width:700px;
+}
+form {
+    display:flex;
+    flex-flow: column;
+    align-items: left;
+    width:80%;
+    margin:50px auto 100px;
+}
+form > .uNoti {
+    text-align: right;
+    width: 77%;
+    font-size: 0.8em;
+    margin-bottom: 20px;
+    color: #555;
+}
+/* profile */
+.profile {
+    display:flex;
+    flex-flow: column;
+    align-items: center;
+    margin:40px 0 30px;
+}
+.profile .roundImg > img {
+	width:200px;
+	height:200px;
+	object-fit: cover;
+    border-radius: 50%;
+}
+#profile {
+    display : none;
+}
+.profile > label {
+    position:relative;
+    right:-70px;
+    bottom:48px;
+    background-color: #64BDEB;
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+}
+.profile > label > img{
+    position:absolute;
+    left:11px;
+    top:9px;
+    width:20px;
+    height:20px;
+}
+/* user 공통부분 */
+form > div {
+    margin-bottom:10px;
+}
+form > div[class^=user] {
+	display:flex;
+	justify-content:left;
+	align-items: center;
+	
+}
+form div > span {
+    font-size:0.8em;
+    font-weight: 500;
+    width:100px;
+    display:inline-block;
+    line-height: 1.2;
+}
+form div > input[id^=user] {
+    height:50px;
+    width:60%;
+    border:solid 1px #ddd;
+    border-radius: 10px;
+    padding : 10px
+}
+form div > button[id$=Btn] {
+    height:50px;
+    width:100px;
+    margin-left:30px;
+    background-color: #64BDEB;
+    border-radius: 10px;
+    color:#fff;
+    font-size:0.9em;
+}
+.userEmailChk {
+    display:none;
+}
+/* button */
+.updateUserBtn {
+    display: flex;
+    justify-content: center;
+    margin-top:30px;
+}
+.updateUserBtn > button,
+.updateUserBtn > a {
+    height:50px;
+    border-radius: 10px;
+}
+.updateUserBtn > button:nth-child(1) {
+    width:100px;
+    background-color: #64BDEB;
+    color:#fff;
+    margin-right:10px;
+}
+.updateUserBtn > a {
+    width:150px;
+    border: 1px solid #64BDEB;
+    color:#64BDEB;
+    background-color: #fff;
+    text-align: center;
+    line-height: 46px;
+}

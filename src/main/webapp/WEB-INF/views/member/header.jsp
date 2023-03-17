@@ -4,7 +4,9 @@
 <%@ page session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<% MemberDto login = (MemberDto)session.getAttribute("login"); %>
+<% 
+	MemberDto login = (MemberDto)session.getAttribute("login");
+%>
 <header>
     <div class="hTop">
         <h1><a href="home.do"><img src="../asset/images/logo.png" alt="여행이지"></a></h1>
@@ -14,7 +16,7 @@
 	            <a href="regi.do">회원가입</a>
             </c:if>
             <c:if test="${sessionScope.login.teId != null }">
-				<a href ="#none"><img src="<%= login.getTeProfile() %>"><span><%=login.getTeId() %></span>님</a>
+				<a href ="mypage.do?teId=<%=login.getTeId() %>"><img src="<%= login.getTeProfile() %>"><span><%=login.getTeId() %></span>님</a>
 	            <a href="logout.do">로그아웃</a>
             </c:if>
         </div>
@@ -32,7 +34,7 @@
 	            <a href="regi.do" class="regi">회원가입</a>
             </c:if>
             <c:if test="${sessionScope.login.teId != null }">
-				<a href ="#none" class="mypage" id="mypage"><img src="<%= login.getTeProfile() %>"></a>
+				<a href ="mypage.do?teId=<%=login.getTeId() %>" class="mypage" id="mypage"><img src="<%= login.getTeProfile() %>"></a>
 	            <a href="logout.do" class="logout" id="logout">로그아웃</a>
             </c:if>
         </div>

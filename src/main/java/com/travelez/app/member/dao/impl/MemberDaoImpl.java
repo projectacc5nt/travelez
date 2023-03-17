@@ -64,7 +64,6 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public MemberDto login(MemberDto dto) {
 		MemberDto mem = session.selectOne(ns + "login", dto);
-		System.out.println("daoImpl" + mem);
 		return mem;
 	}
 
@@ -81,6 +80,27 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int updatePwd(MemberDto dto) {
 		return session.update(ns + "updatePwd", dto);
+	}
+
+	@Override
+	public int updateUserInfo(MemberDto dto) {
+		return session.update(ns + "updateUserInfo", dto);
+	}
+
+	@Override
+	public MemberDto userInfo(String id) {
+		return session.selectOne(ns + "userInfo", id);
+	}
+
+	@Override
+	public int updateUserPwd(MemberDto dto) {
+		return session.update(ns + "updateUserPwd", dto);
+	}
+
+	@Override
+	public int unEmailChk(String email) {
+		System.out.println("dao " + email);
+		return session.delete(ns + "unEmailChk", email);
 	}
 
 
