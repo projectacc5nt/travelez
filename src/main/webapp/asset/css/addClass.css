@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+/* 추가할 class */
+.inputOk {
+	border : 1px solid #0F0FC0 !important;
+}
+.inputNg {
+	border : 1px solid #ff0000 !important;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  10%, 90% {
+    transform: translateX(-3px);
+  }
+  20%, 80% {
+    transform: translateX(3px);
+  }
+  30%, 50%, 70% {
+    transform: translateX(-3px);
+  }
+  40%, 60% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.shake-element {
+  animation: shake 0.3s;
+}
+.clickBtn {
+    color:#fff !important;
+    font-weight: 700 !important;
+    background:#64BDEB !important;
+}

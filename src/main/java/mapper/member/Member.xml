@@ -60,26 +60,52 @@
 	
 	<!-- 로그인 -->
 	<select id="login" parameterType="com.travelez.app.member.dto.MemberDto" resultType="com.travelez.app.member.dto.MemberDto">
-	    select te_id, te_name, te_profile
+	    select te_id, te_pwd, te_name, te_profile, te_email
 	    from member
 	    where te_id=#{teId} and te_pwd=#{tePwd}
 	</select>
+	
 	<!-- 이메일인증하고 아이디찾기 -->
 	<select id="findId" parameterType="String" resultType="String">
 		select te_id
 		from member
 		where te_email=#{teEmail}
 	</select>
+	
 	<!-- 이메일인증하고 비밀번호찾기 -->
 	<select id="findPwd" parameterType="com.travelez.app.member.dto.MemberDto" resultType="Integer">
 		select count(*)
 		from member
 		where te_id=#{teId} and te_email=#{teEmail}
 	</select>
+	
 	<!-- 새로운 비밀번호설정 -->
 	<update id="updatePwd" parameterType="com.travelez.app.member.dto.MemberDto">
 		update member
 		set te_pwd=#{tePwd}
 		where te_email=#{teEmail}
+	</update>
+	<select id="userInfo" parameterType="String" resultType="com.travelez.app.member.dto.MemberDto">
+		select te_id, te_name, te_profile, te_profilename, te_name, te_email, te_phonenum, te_birth, te_prefertrip
+		from member
+		where te_id=#{teId}
+	</select>
+	<!-- 회원정보수정 -->
+	<update id="updateUserInfo" parameterType="com.travelez.app.member.dto.MemberDto">
+		update member
+		set te_profile=#{teProfile}, te_profilename=#{teProfileName}, te_phonenum=#{tePhoneNum}, te_prefertrip=#{tePreferTrip}
+		where te_Id=#{teId}
+	</update>
+
+	<!-- 회원탈퇴 -->
+	<delete id="unEmailChk" parameterType="String">
+		delete from emailchk
+		where te_email=#{teEmail}
+	</delete>
+	<!-- 회원비밀번호 변경 -->
+	<update id="updateUserPwd" parameterType="com.travelez.app.member.dto.MemberDto">
+		update member
+		set te_pwd=#{tePwd}
+		where te_id=#{teId}
 	</update>
 </mapper>

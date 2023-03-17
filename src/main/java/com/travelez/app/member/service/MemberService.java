@@ -24,6 +24,7 @@ public interface MemberService {
 	boolean idCheck(String id);
 	// 회원등록
 	boolean addMember(MemberDto dto);
+	
 	// 로그인
 	MemberDto login(MemberDto dto);
 	// 아이디찾기
@@ -32,4 +33,13 @@ public interface MemberService {
 	boolean findPwd(MemberDto dto);
 	// 비밀번호 재설정
 	boolean updatePwd(MemberDto dto);
+	
+	// 회원정보
+	MemberDto userInfo(String id);
+	// 회원정보수정
+	boolean updateUserInfo(MemberDto dto);
+	// 회원탈퇴
+	boolean unEmailChk(String email);
+	// 회원비밀번호 재설정
+	boolean updateUserPwd(MemberDto dto);
 }

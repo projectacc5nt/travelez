@@ -66,7 +66,6 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public MemberDto login(MemberDto dto) {
-		System.out.println("serviceImpl"+dto);
 		return dao.login(dto);
 	}
 
@@ -84,6 +83,30 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public boolean findPwd(MemberDto dto) {
 		int count = dao.findPwd(dto);
+		return count>0?true:false;
+	}
+
+	@Override
+	public boolean updateUserInfo(MemberDto dto) {
+		int count = dao.updateUserInfo(dto);
+		return count>0?true:false;
+	}
+
+	@Override
+	public MemberDto userInfo(String id) {
+		return dao.userInfo(id);
+	}
+
+	@Override
+	public boolean updateUserPwd(MemberDto dto) {
+		int count = dao.updateUserPwd(dto);
+		return count>0?true:false;
+	}
+
+	@Override
+	public boolean unEmailChk(String email) {
+		System.out.println("service " + email);
+		int count = dao.unEmailChk(email);
 		return count>0?true:false;
 	}
 	

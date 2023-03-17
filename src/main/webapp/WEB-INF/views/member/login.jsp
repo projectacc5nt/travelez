@@ -1,3 +1,4 @@
+<%@page import="com.travelez.app.member.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,12 +10,12 @@
 	<title>여행이지 | 로그인</title>	
 	<link rel="stylesheet" href="../asset/css/reset.css">
 	<link rel="stylesheet" href="../asset/css/login.css">
+	<link rel="stylesheet" href="../asset/css/addClass.css">
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script src="http://lab.alexcican.com/set_cookies/cookie.js"type="text/javascript"></script>
 </head>
 <body>
-
 <div class="loginWrap">
         <h1><img src="../asset/images/logo.png" alt="여행이지"></h1>
         <div class="loginContent">
@@ -88,6 +89,7 @@
     			success:function(msg){
     				if(msg == "LOGIN_OK"){
     					location.href = "home.do";
+    					
     				}else if(msg == "LOGIN_FAIL"){
     					idPwdChk.text("아이디 또는 비밀번호를 확인해주세요.")
     	    			idPwdChk.css("display", "block")
